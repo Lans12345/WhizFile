@@ -6,9 +6,9 @@ PreferredSizeWidget AppbarWidget(
 ) {
   return AppBar(
     elevation: 0,
-    foregroundColor: Colors.black,
-    backgroundColor: Colors.white,
-    title: TextRegular(text: title, fontSize: 18, color: Colors.black),
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.teal,
+    title: TextRegular(text: title, fontSize: 18, color: Colors.white),
     centerTitle: true,
   );
 }

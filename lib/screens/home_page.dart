@@ -1,4 +1,5 @@
 import 'package:files_tracking/screens/pages/main_page.dart';
+import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-  final tabs = [const MainPage(), const MainPage(), const MainPage()];
+  final tabs = [const MainPage(), const OrdersPage(), const MainPage()];
 
   @override
   Widget build(BuildContext context) {
