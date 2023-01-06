@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
         backgroundColor: Colors.teal,
         title:
-            TextRegular(text: 'While File', fontSize: 24, color: Colors.white),
+            TextRegular(text: 'WHiZ File', fontSize: 24, color: Colors.white),
       ),
       body: SafeArea(child: tabs[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
