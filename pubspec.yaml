@@ -41,9 +41,7 @@ dependencies:
   get_storage:
   firebase_auth:
   google_sign_in:
-  url_launcher:
   google_maps_flutter: ^2.1.4
-  geolocator: ^9.0.2
   riverpod:
   flutter_riverpod:
   top_snackbar_flutter:
