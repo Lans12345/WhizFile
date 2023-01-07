@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "313285496313",
+    "project_id": "whizfile",
+    "storage_bucket": "whizfile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313285496313:android:a26d7b25b7bf79bd4c0128",
+        "android_client_info": {
+          "package_name": "com.example.files_tracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313285496313-66jubmpc5qh9thvf0vl8c8a22mt20vcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.files_tracking",
+            "certificate_hash": "5068bed63eda77bfc59d683b901b589c4386b6ac"
+          }
+        },
+        {
+          "client_id": "313285496313-p77r6smml0lcs9ivi9726iav4bgumquf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD56-f2_l5rrz90lxFtp8CLmSIZS8Z7FTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313285496313-p77r6smml0lcs9ivi9726iav4bgumquf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
