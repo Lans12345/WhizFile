@@ -10,6 +10,13 @@ class OrdersPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.teal,
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: (() {})),
         appBar: AppBar(
           bottom: const TabBar(
               indicatorColor: Colors.teal,

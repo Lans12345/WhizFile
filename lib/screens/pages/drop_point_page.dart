@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:files_tracking/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -8,24 +9,37 @@ class DropPointPage extends StatelessWidget {
       Completer<GoogleMapController>();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(12.8797, 121.7740),
+    zoom: 6,
   );
-
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      mapType: MapType.hybrid,
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-      },
+    return Stack(
+      children: [
+        GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
+        Card(
+          child: Container(
+            child: ListTile(
+              leading: Icon(
+                Icons.location_on_rounded,
+                color: Colors.white,
+              ),
+              title:
+                  TextBold(text: 'Location', fontSize: 14, color: Colors.white),
+            ),
+            height: 50,
+            width: double.infinity,
+            color: Colors.teal,
+          ),
+        ),
+      ],
     );
   }
 }
