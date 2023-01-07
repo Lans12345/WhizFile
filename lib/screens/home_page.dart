@@ -2,6 +2,7 @@ import 'package:files_tracking/screens/pages/drop_point_page.dart';
 import 'package:files_tracking/screens/pages/main_page.dart';
 import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/screens/pages/rates_page.dart';
+import 'package:files_tracking/screens/pages/track_page.dart';
 import 'package:files_tracking/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -144,6 +145,7 @@ class _HomePageState extends State<HomePage> {
       const OrdersPage(),
       const RatesPage(),
       DropPointPage(),
+      TrackPage(),
     ];
     return Scaffold(
       appBar: AppBar(
