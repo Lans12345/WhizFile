@@ -47,6 +47,7 @@ dependencies:
   top_snackbar_flutter:
   carousel_slider:
   geolocator: ^9.0.1
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:
