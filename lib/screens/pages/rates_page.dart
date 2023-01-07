@@ -41,7 +41,7 @@ class RatesPage extends StatelessWidget {
                           text: 'From', fontSize: 14, color: Colors.black),
                       SizedBox(
                           height: 30,
-                          width: 250,
+                          width: 300,
                           child: TextFormField(
                             decoration: InputDecoration(
                                 hintStyle: TextStyle(fontSize: 12),
@@ -71,7 +71,7 @@ class RatesPage extends StatelessWidget {
                           text: 'To', fontSize: 14, color: Colors.black),
                       SizedBox(
                           height: 30,
-                          width: 250,
+                          width: 300,
                           child: TextFormField(
                             decoration: InputDecoration(
                                 hintStyle: TextStyle(fontSize: 12),
