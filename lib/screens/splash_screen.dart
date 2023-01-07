@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:files_tracking/auth/login_page.dart.dart';
+import 'package:files_tracking/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreenToHome extends StatefulWidget {
@@ -15,7 +15,7 @@ class _ScreenState extends State<LoadingScreenToHome> {
     super.initState();
     Timer(const Duration(seconds: 5), () async {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginPage()));
+          MaterialPageRoute(builder: (context) => const MainScreen()));
     });
   }
 
