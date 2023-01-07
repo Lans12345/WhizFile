@@ -1,5 +1,6 @@
 import 'package:files_tracking/auth/signup_page.dart.dart';
 import 'package:files_tracking/screens/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/text_widget.dart';
@@ -117,8 +118,36 @@ class _LoginPageState extends State<LoginPage> {
                 minWidth: 250,
                 color: Colors.teal,
                 onPressed: () async {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: email, password: password);
+
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  } catch (e) {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => AlertDialog(
+                              content: Text(
+                                e.toString(),
+                                style: const TextStyle(fontFamily: 'QRegular'),
+                              ),
+                              actions: <Widget>[
+                                MaterialButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Close',
+                                    style: TextStyle(
+                                        fontFamily: 'QRegular',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ));
+                  }
                 },
                 child:
                     TextBold(text: 'Login', fontSize: 18, color: Colors.white),

@@ -3,6 +3,7 @@ import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/screens/pages/rates_page.dart';
 import 'package:files_tracking/screens/pages/track_page.dart';
 import 'package:files_tracking/widgets/text_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../auth/login_page.dart.dart';
@@ -189,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           MaterialButton(
                             onPressed: () async {
-                              // await FirebaseAuth.instance.signOut();
+                              await FirebaseAuth.instance.signOut();
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) => const LoginPage()));

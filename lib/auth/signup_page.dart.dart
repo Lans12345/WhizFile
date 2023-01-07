@@ -1,4 +1,6 @@
 import 'package:files_tracking/auth/login_page.dart.dart';
+import 'package:files_tracking/services/cloud_function/add_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/text_widget.dart';
@@ -153,31 +155,60 @@ class _SignupPageState extends State<SignupPage> {
               minWidth: 250,
               color: Colors.teal,
               onPressed: () async {
-                showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => AlertDialog(
-                          content: const Text(
-                            'Account Created Succesfully!',
-                            style: TextStyle(fontFamily: 'QRegular'),
-                          ),
-                          actions: <Widget>[
-                            MaterialButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage()));
-                              },
-                              child: const Text(
-                                'Continue',
-                                style: TextStyle(
-                                    fontFamily: 'QRegular',
-                                    fontWeight: FontWeight.bold),
-                              ),
+                try {
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: email, password: password);
+
+                  showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => AlertDialog(
+                            content: const Text(
+                              'Account Created Succesfully!',
+                              style: TextStyle(fontFamily: 'QRegular'),
                             ),
-                          ],
-                        ));
+                            actions: <Widget>[
+                              MaterialButton(
+                                onPressed: () {
+                                  addUser(name, email);
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginPage()));
+                                },
+                                child: const Text(
+                                  'Continue',
+                                  style: TextStyle(
+                                      fontFamily: 'QRegular',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ));
+                } catch (e) {
+                  showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => AlertDialog(
+                            content: Text(
+                              e.toString(),
+                              style: const TextStyle(fontFamily: 'QRegular'),
+                            ),
+                            actions: <Widget>[
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text(
+                                  'Close',
+                                  style: TextStyle(
+                                      fontFamily: 'QRegular',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ));
+                }
               },
               child:
                   TextBold(text: 'Register', fontSize: 18, color: Colors.white),
