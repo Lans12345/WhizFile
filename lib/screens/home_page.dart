@@ -1,5 +1,4 @@
 import 'package:files_tracking/screens/pages/drop_point_page.dart';
-import 'package:files_tracking/screens/pages/main_page.dart';
 import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/screens/pages/rates_page.dart';
 import 'package:files_tracking/screens/pages/track_page.dart';
@@ -84,33 +83,40 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.teal),
-                  width: 150,
-                  height: 120,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextBold(
-                            text: 'Tracking',
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextBold(
-                            text: 'Track your Order',
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        ],
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _currentIndex = 4;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.teal),
+                    width: 150,
+                    height: 120,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TextBold(
+                              text: 'Tracking',
+                              fontSize: 24,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextBold(
+                              text: 'Track your Order',
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
