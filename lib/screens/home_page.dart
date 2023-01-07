@@ -1,3 +1,4 @@
+import 'package:files_tracking/screens/pages/drop_point_page.dart';
 import 'package:files_tracking/screens/pages/main_page.dart';
 import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/screens/pages/rates_page.dart';
@@ -141,7 +142,8 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       const OrdersPage(),
-      const RatesPage()
+      const RatesPage(),
+      DropPointPage(),
     ];
     return Scaffold(
       appBar: AppBar(
