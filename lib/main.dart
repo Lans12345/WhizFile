@@ -1,11 +1,10 @@
 import 'package:files_tracking/firebase_options.dart';
 
 import 'package:files_tracking/screens/home_page.dart';
+import 'package:files_tracking/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'auth/login_page.dart.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return HomePage();
             } else {
-              return const LoginPage();
+              return LoadingScreenToHome();
             }
           }),
     );
