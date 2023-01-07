@@ -28,11 +28,11 @@ class TrackPage extends StatelessWidget {
           child: Container(
             child: ListTile(
               leading: Icon(
-                Icons.location_on_rounded,
+                Icons.delivery_dining_rounded,
                 color: Colors.white,
               ),
-              title:
-                  TextBold(text: 'Location', fontSize: 14, color: Colors.white),
+              title: TextBold(
+                  text: 'Track my Order', fontSize: 14, color: Colors.white),
             ),
             height: 50,
             width: double.infinity,
