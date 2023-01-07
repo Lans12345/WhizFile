@@ -48,7 +48,7 @@ class MainPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         TextBold(
-                          text: 'Ads Section',
+                          text: 'Order',
                           fontSize: 24,
                           color: Colors.white,
                         ),
@@ -57,7 +57,7 @@ class MainPage extends StatelessWidget {
                         ),
                         TextBold(
                           text: 'Create Order',
-                          fontSize: 16,
+                          fontSize: 12,
                           color: Colors.white,
                         ),
                       ],
@@ -88,7 +88,7 @@ class MainPage extends StatelessWidget {
                         ),
                         TextBold(
                           text: 'Track your Order',
-                          fontSize: 16,
+                          fontSize: 12,
                           color: Colors.white,
                         ),
                       ],

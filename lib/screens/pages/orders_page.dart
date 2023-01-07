@@ -32,12 +32,28 @@ class OrdersPage extends StatelessWidget {
         ),
         body: TabBarView(children: [
           Center(
-            child:
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/box.png', height: 150),
+                SizedBox(
+                  height: 20,
+                ),
                 TextRegular(text: 'No data', fontSize: 18, color: Colors.black),
+              ],
+            ),
           ),
           Center(
-            child:
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/box.png', height: 150),
+                SizedBox(
+                  height: 20,
+                ),
                 TextRegular(text: 'No data', fontSize: 18, color: Colors.black),
+              ],
+            ),
           ),
         ]),
       ),

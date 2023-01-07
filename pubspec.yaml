@@ -45,6 +45,7 @@ dependencies:
   riverpod:
   flutter_riverpod:
   top_snackbar_flutter:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:
