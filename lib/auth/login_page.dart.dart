@@ -1,3 +1,4 @@
+import 'package:files_tracking/auth/signup_page.dart.dart';
 import 'package:files_tracking/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -134,8 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey),
                   TextButton(
                     onPressed: () {
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => const SignupPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const SignupPage()));
                     },
                     child: TextBold(
                         text: "Register now",

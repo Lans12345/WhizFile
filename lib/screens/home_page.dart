@@ -5,6 +5,8 @@ import 'package:files_tracking/screens/pages/track_page.dart';
 import 'package:files_tracking/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../auth/login_page.dart.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -155,10 +157,54 @@ class _HomePageState extends State<HomePage> {
     ];
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.notifications),
+          ),
+          IconButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text(
+                          'Logout Confirmation',
+                          style: TextStyle(
+                              fontFamily: 'QBold', fontWeight: FontWeight.bold),
+                        ),
+                        content: const Text(
+                          'Are you sure you want to Logout?',
+                          style: TextStyle(fontFamily: 'QRegular'),
+                        ),
+                        actions: <Widget>[
+                          MaterialButton(
+                            onPressed: () => Navigator.of(context).pop(true),
+                            child: const Text(
+                              'Close',
+                              style: TextStyle(
+                                  fontFamily: 'QRegular',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () async {
+                              // await FirebaseAuth.instance.signOut();
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            child: const Text(
+                              'Continue',
+                              style: TextStyle(
+                                  fontFamily: 'QRegular',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ));
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
         elevation: 0,
