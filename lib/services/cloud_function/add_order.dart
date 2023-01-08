@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 
 Future addOrder(
-  String name,
-  String email,
   String documentType,
   String deliveryAddress,
   String courier,
@@ -15,11 +13,6 @@ Future addOrder(
   final docUser = FirebaseFirestore.instance.collection('Orders').doc();
 
   final json = {
-    'user': {
-      'name': name,
-      'email': email,
-      'uid': FirebaseAuth.instance.currentUser!.uid,
-    },
     'uid': FirebaseAuth.instance.currentUser!.uid,
     'id': docUser.id,
     'date': cdate3,

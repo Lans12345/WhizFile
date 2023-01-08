@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      const OrdersPage(),
+      OrdersPage(),
       const RatesPage(),
       DropPointPage(),
       TrackPage(),
