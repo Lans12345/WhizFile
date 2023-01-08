@@ -6,24 +6,35 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class TrackPage extends StatelessWidget {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-
+class TrackPage extends StatefulWidget {
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(12.8797, 121.7740),
     zoom: 6,
   );
 
   @override
+  State<TrackPage> createState() => _TrackPageState();
+}
+
+class _TrackPageState extends State<TrackPage> {
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+
+  GoogleMapController? mapController;
+
+  final Set<Marker> _marker = <Marker>{};
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GoogleMap(
+          markers: _marker,
           mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
+          initialCameraPosition: TrackPage._kGooglePlex,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
+            mapController = controller;
           },
         ),
         Card(
@@ -78,7 +89,28 @@ class TrackPage extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                           child: GestureDetector(
-                            onTap: (() {}),
+                            onTap: (() {
+                              setState(() {
+                                var sourcePosition = LatLng(
+                                    data.docs[index]['lat'],
+                                    data.docs[index]['long']);
+                                _marker.add(Marker(
+                                  infoWindow: InfoWindow(
+                                    title:
+                                        'My Order: ${data.docs[index]['documentType']}',
+                                  ),
+                                  markerId: MarkerId(
+                                      data.docs[index]['documentType']),
+                                  icon: BitmapDescriptor.defaultMarker,
+                                  position: sourcePosition,
+                                ));
+                              });
+                              mapController?.animateCamera(
+                                  CameraUpdate.newCameraPosition(CameraPosition(
+                                      target: LatLng(data.docs[index]['lat'],
+                                          data.docs[index]['long']),
+                                      zoom: 16)));
+                            }),
                             child: Card(
                               child: Container(
                                 height: 50,
@@ -89,11 +121,11 @@ class TrackPage extends StatelessWidget {
                                 ),
                                 child: ListTile(
                                   title: TextBold(
-                                      text: 'File Name',
+                                      text: data.docs[index]['documentType'],
                                       fontSize: 12,
                                       color: Colors.black),
                                   subtitle: TextBold(
-                                      text: 'Date',
+                                      text: data.docs[index]['date'],
                                       fontSize: 9,
                                       color: Colors.black),
                                 ),

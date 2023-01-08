@@ -161,10 +161,6 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
-          ),
-          IconButton(
             onPressed: () {
               showDialog(
                   context: context,
