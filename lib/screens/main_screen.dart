@@ -15,8 +15,8 @@ class MainScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(30.0),
               child: Image(
-                width: 250,
-                image: AssetImage('assets/images/fblogo.png'),
+                width: 500,
+                image: AssetImage('assets/images/fblogo.jpg'),
               ),
             ),
             const SizedBox(
@@ -27,8 +27,10 @@ class MainScreen extends StatelessWidget {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const LoginPage()));
               },
-              child:
-                  TextBold(text: 'WHiZ File', fontSize: 52, color: Colors.teal),
+              child: TextBold(
+                  text: 'WHiZ File',
+                  fontSize: 52,
+                  color: Colors.lightGreen[400]!),
             ),
           ],
         ),

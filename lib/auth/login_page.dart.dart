@@ -26,8 +26,10 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/fblogo.png', height: 150),
+              TextBold(text: 'Welcome to', fontSize: 18, color: Colors.black),
+              Image.asset('assets/images/fblogo.jpg', height: 200),
               const SizedBox(
                 height: 20,
               ),

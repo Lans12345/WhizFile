@@ -35,8 +35,8 @@ class _ScreenState extends State<LoadingScreenToHome> {
                     Padding(
                       padding: EdgeInsets.all(30.0),
                       child: Image(
-                        width: 250,
-                        image: AssetImage('assets/images/fblogo.png'),
+                        width: 350,
+                        image: AssetImage('assets/images/fblogo.jpg'),
                       ),
                     ),
                   ]),

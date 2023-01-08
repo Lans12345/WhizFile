@@ -33,7 +33,11 @@ class _SignupPageState extends State<SignupPage> {
             const SizedBox(
               height: 50,
             ),
-            Image.asset('assets/images/fblogo.png', height: 150),
+            Image.asset('assets/images/fblogo.jpg', height: 200),
+            const SizedBox(
+              height: 20,
+            ),
+            TextBold(text: 'Register now!', fontSize: 18, color: Colors.black),
             const SizedBox(
               height: 20,
             ),
