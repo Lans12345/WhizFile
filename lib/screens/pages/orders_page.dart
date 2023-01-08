@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:files_tracking/services/cloud_function/add_order.dart';
 import 'package:files_tracking/widgets/button_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -178,11 +180,33 @@ class _OrdersPageState extends State<OrdersPage> {
               TextRegular(text: 'My Order', fontSize: 18, color: Colors.white),
         ),
         body: TabBarView(children: [
-          StreamBuilder<Object>(
-              stream: null,
-              builder: (context, snapshot) {
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Orders')
+                  .where('uid',
+                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .where('status', isEqualTo: 'On Process')
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  print('error');
+                  return const Center(child: Text('Error'));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  print('waiting');
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.black,
+                    )),
+                  );
+                }
+
+                final data = snapshot.requireData;
                 return ListView.separated(
-                    itemCount: 50,
+                    itemCount: snapshot.data?.size ?? 0,
                     separatorBuilder: (context, index) {
                       return const Divider();
                     },
@@ -190,11 +214,13 @@ class _OrdersPageState extends State<OrdersPage> {
                       return ListTile(
                         leading: const Icon(Icons.file_copy_rounded),
                         title: TextBold(
-                            text: 'Document Type',
+                            text: data.docs[index]['documentType'],
                             fontSize: 15,
                             color: Colors.black),
                         subtitle: TextBold(
-                            text: 'Date', fontSize: 12, color: Colors.grey),
+                            text: data.docs[index]['date'],
+                            fontSize: 12,
+                            color: Colors.grey),
                         trailing: IconButton(
                           onPressed: () {
                             showDialog(
@@ -219,6 +245,21 @@ class _OrdersPageState extends State<OrdersPage> {
                                         MaterialButton(
                                           onPressed: () async {
                                             // update
+                                            FirebaseFirestore.instance
+                                                .collection('Orders')
+                                                .doc(data.docs[index].id)
+                                                .update(
+                                                    {'status': 'Completed'});
+                                            Navigator.of(context).pop();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: TextRegular(
+                                                    text: 'Order completed!',
+                                                    fontSize: 12,
+                                                    color: Colors.white),
+                                              ),
+                                            );
                                           },
                                           child: const Text(
                                             'Continue',
@@ -238,11 +279,33 @@ class _OrdersPageState extends State<OrdersPage> {
                       );
                     });
               }),
-          StreamBuilder<Object>(
-              stream: null,
-              builder: (context, snapshot) {
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Orders')
+                  .where('uid',
+                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .where('status', isEqualTo: 'Completed')
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  print('error');
+                  return const Center(child: Text('Error'));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  print('waiting');
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.black,
+                    )),
+                  );
+                }
+
+                final data = snapshot.requireData;
                 return ListView.separated(
-                    itemCount: 50,
+                    itemCount: snapshot.data?.size ?? 0,
                     separatorBuilder: (context, index) {
                       return const Divider();
                     },
@@ -250,11 +313,13 @@ class _OrdersPageState extends State<OrdersPage> {
                       return ListTile(
                         leading: const Icon(Icons.file_copy_rounded),
                         title: TextBold(
-                            text: 'Document Type',
+                            text: data.docs[index]['documentType'],
                             fontSize: 15,
                             color: Colors.black),
                         subtitle: TextBold(
-                            text: 'Date', fontSize: 12, color: Colors.grey),
+                            text: data.docs[index]['date'],
+                            fontSize: 12,
+                            color: Colors.grey),
                       );
                     });
               }),
