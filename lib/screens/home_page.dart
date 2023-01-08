@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:files_tracking/screens/pages/drop_point_page.dart';
 import 'package:files_tracking/screens/pages/orders_page.dart';
 import 'package:files_tracking/screens/pages/rates_page.dart';
@@ -16,6 +17,57 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
+  var items = [
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/images/ad1.jpg'),
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/images/ad2.jpg'),
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/images/ad3.jpg'),
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        width: 300,
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/images/ad4.jpg'),
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final tabs = [
@@ -25,23 +77,24 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.teal),
-                width: double.infinity,
-                height: 150,
-                child: Center(
-                  child: TextBold(
-                    text: 'Ads Section',
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            TextBold(text: "Advertisement", fontSize: 10, color: Colors.grey),
+            CarouselSlider(
+                items: items,
+                options: CarouselOptions(
+                  height: 150,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.8,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enlargeCenterPage: true,
+                  enlargeFactor: 0.3,
+                  scrollDirection: Axis.horizontal,
+                )),
             const SizedBox(
               height: 20,
             ),
