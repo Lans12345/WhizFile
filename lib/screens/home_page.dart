@@ -189,9 +189,12 @@ class _HomePageState extends State<HomePage> {
                     return Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: ListTile(
-                        leading: const Icon(Icons.discount),
+                        leading: const Icon(
+                          Icons.discount,
+                          color: Colors.amber,
+                        ),
                         title: TextRegular(
-                            text: 'Vouchers',
+                            text: 'Voucher #$index',
                             fontSize: 14,
                             color: Colors.black),
                         trailing: const Icon(Icons.arrow_forward_ios_rounded),
@@ -205,7 +208,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       OrdersPage(),
-      const RatesPage(),
+      RatesPage(),
       DropPointPage(),
       TrackPage(),
     ];

@@ -110,7 +110,9 @@ class MainPage extends StatelessWidget {
                     child: ListTile(
                       leading: const Icon(Icons.discount),
                       title: TextRegular(
-                          text: 'Vouchers', fontSize: 14, color: Colors.black),
+                          text: 'Voucher $index',
+                          fontSize: 14,
+                          color: Colors.black),
                       trailing: const Icon(Icons.arrow_forward_ios_rounded),
                     ),
                   );

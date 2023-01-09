@@ -1,10 +1,16 @@
-import 'package:files_tracking/widgets/appbar_widget.dart';
 import 'package:files_tracking/widgets/button_widget.dart';
 import 'package:files_tracking/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class RatesPage extends StatelessWidget {
-  const RatesPage({super.key});
+  RatesPage({super.key});
+
+  late String qty;
+  late String length;
+  late String width;
+  late String from;
+  late String to;
+  late String item;
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +21,17 @@ class RatesPage extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 75,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.keyboard_double_arrow_up_sharp,
                         size: 32,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
@@ -37,7 +43,10 @@ class RatesPage extends StatelessWidget {
                               height: 30,
                               width: 300,
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                onChanged: (input) {
+                                  from = input;
+                                },
+                                decoration: const InputDecoration(
                                     hintStyle: TextStyle(fontSize: 12),
                                     hintText: 'Origin City'),
                               )),
@@ -45,17 +54,17 @@ class RatesPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.keyboard_double_arrow_down_sharp,
                         size: 32,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
@@ -67,7 +76,10 @@ class RatesPage extends StatelessWidget {
                               height: 30,
                               width: 300,
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                onChanged: (input) {
+                                  to = input;
+                                },
+                                decoration: const InputDecoration(
                                     hintStyle: TextStyle(fontSize: 12),
                                     hintText: 'Destination City'),
                               )),
@@ -75,7 +87,7 @@ class RatesPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Padding(
@@ -86,7 +98,10 @@ class RatesPage extends StatelessWidget {
                         TextRegular(
                             text: 'Item', fontSize: 14, color: Colors.black),
                         TextFormField(
-                          decoration: InputDecoration(
+                          onChanged: (input) {
+                            item = input;
+                          },
+                          decoration: const InputDecoration(
                               hintStyle: TextStyle(fontSize: 12),
                               hintText: 'File Type:'),
                         ),
@@ -96,12 +111,16 @@ class RatesPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 50, right: 50),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      onChanged: (input) {
+                        qty = input;
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
                           hintStyle: TextStyle(fontSize: 12),
                           hintText: 'Quantity: '),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Padding(
@@ -119,7 +138,11 @@ class RatesPage extends StatelessWidget {
                             SizedBox(
                               width: 100,
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                onChanged: (input) {
+                                  length = input;
+                                },
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
                                     hintStyle: TextStyle(fontSize: 12),
                                     hintText: 'Length:'),
                               ),
@@ -127,7 +150,11 @@ class RatesPage extends StatelessWidget {
                             SizedBox(
                               width: 100,
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                onChanged: (input) {
+                                  width = input;
+                                },
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
                                     hintStyle: TextStyle(fontSize: 12),
                                     hintText: 'Width:'),
                               ),
@@ -137,18 +164,114 @@ class RatesPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
-                  ButtonWidget(onPressed: () {}, text: 'Calculate'),
+                  ButtonWidget(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => Dialog(
+                                  child: SizedBox(
+                                    height: 300,
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Column(
+                                              children: [
+                                                TextBold(
+                                                    text:
+                                                        'Estimated Shipping Rate',
+                                                    fontSize: 18,
+                                                    color: Colors.teal),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextBold(
+                                                text: 'Origin: $from',
+                                                fontSize: 14,
+                                                color: Colors.black),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextBold(
+                                                text: 'Destination: $to',
+                                                fontSize: 14,
+                                                color: Colors.black),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            TextBold(
+                                                text: 'Item Type: $item',
+                                                fontSize: 14,
+                                                color: Colors.black),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextBold(
+                                                text: 'Quantity: $qty',
+                                                fontSize: 12,
+                                                color: Colors.black),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextBold(
+                                                text:
+                                                    'Length: $length Width: $width',
+                                                fontSize: 12,
+                                                color: Colors.black),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Center(
+                                                child: TextBold(
+                                                    text:
+                                                        'Estimated Rate: ${(((double.parse(length) / double.parse(width)) * 10) * double.parse(qty)).toStringAsFixed(2)}php',
+                                                    fontSize: 18,
+                                                    color: Colors.amber)),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Center(
+                                              child: ButtonWidget(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  text: 'Close'),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ));
+                      },
+                      text: 'Calculate'),
                 ],
               ),
             ),
           ),
           Card(
             child: Container(
+              height: 50,
+              width: double.infinity,
+              color: Colors.teal,
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.shopping_cart_checkout_rounded,
                   color: Colors.white,
                 ),
@@ -157,9 +280,6 @@ class RatesPage extends StatelessWidget {
                     fontSize: 14,
                     color: Colors.white),
               ),
-              height: 50,
-              width: double.infinity,
-              color: Colors.teal,
             ),
           ),
         ],
